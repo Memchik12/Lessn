@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="dishboard">
+        <label>
+            Search: <input type="text" id="search">
+        </label>
+    </div>
+
+    <script>
+        document.getElementById('search')
+
+            .addEventListener('input', (e) => {
+                const search e.target.value;
+                console.log(search);
+                const index = searchFruitIndex (search);
+                const resultSearch = document.getElementById('resultSearch');
+                if (index === -1) {
+                    resultSearch.textContent = 'Not found';
+                } else {
+                    resultSearch.textContent = 'Found: ${index} ${fruits [index]}';
+                }
+
+            })
+    </script>
+
+
+    <div id="arr">
+        <ul id="fruits">
+
+        </ul>
+    </div>
+<script>
+    const  fruitsList = document.getElementById('fruits');
+    const fruits = ['Apple', 'Banana', 'Orange', 'Mango', 'Pineapple', 'Grapes', 'Strawberry', 'Watermelon', 'Pear', 'Cherry'];
+    function renderFruit()
+    {
+            const fruitsList = document.getElementById('fruits');
+
+        fruitsList.innerHTML = '';
+        for (let fruit of fruitsList) {
+            const li = document.createElement('li');
+            li.textContent = fruit;
+            fruitsList.appendChild(li);
+        }
+
+    }
+    renderFruit();
+    </script>
+</body>
+</html>

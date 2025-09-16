@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="ashboard">
+        <label> <input type="number" id = "arrSize"></label><br>
+        <label> <input type="number" id = "arrMin"></label><br>
+        <label> <input type="number" id = "arrMax"></label><br>
+    </div>
+    <div id="arr">
+
+    </div>
+<script>
+
+    const arr = []
+    let arrSize = 10
+    let arMin = 1
+    let arMax = 10
+    document.getElementById('arrSize').addEventListener('change', () => {
+            arrSize = this.value;
+        getRandomInt()
+        printArrToConsole()
+
+    })
+
+    document.getElementById('arrMin').addEventListener('change', () => {
+        arMin = this.value;
+        getRandomInt()
+        printArrToConsole()
+
+    })
+
+    document.getElementById('arrMax').addEventListener('change', () => {
+        arMax = this.value;
+        getRandomInt()
+        printArrToConsole()
+
+    })
+    /*
+    * Fills the array with random numbers
+    * */
+    function getRandomInt()
+    {
+        for (let i = 0; i <= arrSize; i++)
+        {
+            arr[i] = Math.floor(Math.random() * (arMax - arMin + 1)) + arMin
+
+        }
+
+    }
+
+    /*
+    * Fills the array with random numbers
+    * */
+    function printArrToConsole(arr)
+    {
+        console.log(arr)
+
+    }
+    // function printArrMax(arr)
+    // {
+    //     arr.forEach((item, i) => {
+    //         s
+    //
+    //     })
+    //
+    // }
+
+
+
+
+</script>
+</body>
+</html>
