@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <img src="" alt="" id="avatar" width="50" style="border-radius: 50%; vertical-align: middle;">
+    <h2 id="name"></h2>
+    <p id="age"></p>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+
+    let avatarView = document.getElementById('avatar');
+    let nameView = document.getElementById('name');
+    let ageView = document.getElementById('age');
+    let inputName = document.getElementById('inputName');
+
+    let userModel = {
+        id: 1,
+        avatar: 'https://avatars.githubusercontent.com/u/10101010?v=4',
+        name: 'John',
+        age: 25
+
+    }
+
+    function updateUserDataFromSource()
+    {
+        imgAvatar.src = userModel.avatar;
+        h2Name.textContent = userModel.name;
+        ageView.textContent = userModel.age;
+    }
+
+    let imgAvatar = document.getElementById('avatar');
+    let h2Name = document.getElementById('name');
+
+    let page = document.getElementById('age');
+
+
+</script>
+</body>
+</html>
