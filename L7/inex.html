@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> DOM Navigation </h1>
+<div id="dashboard"></div>
+<main id="content">
+    <ul>
+        <li class="selectMe">First</lic>
+        <li>Second</li>
+        <li>Third
+            <ol>
+                <li>Third.1</li>
+                <li>Third.2
+                    <ul>
+                        <li>Third.2.1</li>
+                        <li>Third.2.2</li>
+                        <li>Third.2.3</li>
+                    </ul>
+                </li>
+                <li>Third.3</li>
+            </ol>
+        </li>
+        <li class="selectMe">Fourth</li>
+        <li>Fifth</li>
+        <li>Sixth</li>
+        <li>Seventh</li>
+        <li>Eighth</li>
+        <li>Ninth</li>
+        <li>Tenth</li>
+        <li>Eleventh</li>
+        <li>Last</li>
+    </ul>
+</main>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    document.getElementById('cmdGreen').onclick = function (event) {
+        let  elements = document.querySelectorAll('.selectMe')
+        event.forEach(element=>{
+            element.style.backgroundColor = 'green';
+
+        })
+        let element = document.querySelector('.selectMe')
+        element.style.border = 'red'
+    }
+
+</script>
+</body>
+</html>
