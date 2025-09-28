@@ -164,14 +164,24 @@
         // Clear the game pad
         gamePad.innerHTML = "";
 
+        const acept =[4,4,4,4,4]
 
         // Add cards to the game pad
 
         for (let i = 0; i < cardCount; i++) {
-                const idCard = Math.random() * cards.length;
-                const card = cards[Math.floor(idCard)];
-                const cardElement = renderCard(card);
-                gamePad.appendChild(cardElement);
+            while (true) {
+                const idCard = Math.floor(Math.random() * cards.length);
+
+                if (acept[idCard] > 0) {
+                    acept[idCard]--;
+                    const card = cards[idCard];
+                    const cardElement = renderCard(card);
+                    gamePad.appendChild(cardElement);
+                    break;
+                }
+
+
+            }
 
 
 
