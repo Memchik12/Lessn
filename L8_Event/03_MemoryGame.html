@@ -75,19 +75,50 @@
 
     function onCardClick(event) {
 
+
         if (openCard !== null) {
-            const img = openCard.querySelector("img");
-            img.style.opacity = "0";
-            openCard.setAttribute("is-open", false);
-            openCard.style.background = "transparent";
+            if (openCard.getAttribute("unique-identifier") !== event.currentTarget.getAttribute("unique-identifier"))
+            {
+            // console.log("openCard - " + openCard.getAttribute("is-correct"));
+            // console.log("event - " + event.currentTarget.getAttribute("is-correct"));
+                if (openCard.getAttribute("data-id") === event.currentTarget.getAttribute("data-id"))
+                {
+                    if (openCard.getAttribute("is-correct") === true || event.currentTarget.getAttribute("is-correct") === true) {
+                        console.log("block");
+                    }
+                    const card = event.currentTarget;
+                    const img = card.querySelector("img");
+                    img.style.opacity = "1";
+                    card.setAttribute("is-open", true);
+                    card.style.background = "#3be81d";
+
+                    card.setAttribute("is-correct", true)
+                    openCard.setAttribute("is-correct", true)
+                    openCard.style.background = "#3be81d";
+
+                    openCard.setAttribute("is-open", true);
+                    openCard = null
+
+                }
+            }
+            if (openCard.getAttribute("is-correct") !== "true") {
+                const img = openCard.querySelector("img");
+                img.style.opacity = "0";
+                openCard.setAttribute("is-open", false);
+                openCard.style.background = "transparent";
+            }
+
+        }
+        if (event.currentTarget.getAttribute("is-correct") !== "true") {
+            const card = event.currentTarget;
+            const img = card.querySelector("img");
+            img.style.opacity = "1";
+            card.setAttribute("is-open", true);
+            card.style.background = "#eee";
+            openCard = card;
         }
 
-        const card = event.currentTarget;
-        const img = card.querySelector("img");
-        img.style.opacity = "1";
-        card.setAttribute("is-open", true);
-        card.style.background = "#eee";
-        openCard = card;
+
     }
 
     /**
@@ -108,8 +139,10 @@
         div.addEventListener("click", onCardClick);
 
         // Встановлюємо атрибути та вміст картки
+        div.setAttribute("is-correct", false)
         div.setAttribute("data-id", card.id);
         div.setAttribute("data-name", card.name);
+        div.setAttribute("unique-identifier", Math.random() * 10000);
 
         // Створюємо та додаємо зображення
         const img = document.createElement("img");
@@ -130,23 +163,19 @@
 
         // Clear the game pad
         gamePad.innerHTML = "";
-        let access_point = [4,4,4,4,4]
+
+
         // Add cards to the game pad
 
         for (let i = 0; i < cardCount; i++) {
-            while (true) {
                 const idCard = Math.random() * cards.length;
-                if (access_point[idCard] === 0)
-                { console.log(0) }
-                if (access_point[idCard] !== 0) {
-                    access_point[idCard] -= 1;
-                    const card = cards[Math.floor(idCard)];
-                    const cardElement = renderCard(card);
-                    gamePad.appendChild(cardElement);
-                    console.log(access_point)
-                    break;
-                }
-            }
+                const card = cards[Math.floor(idCard)];
+                const cardElement = renderCard(card);
+                gamePad.appendChild(cardElement);
+
+
+
+
         }
     }
 
