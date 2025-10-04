@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/npm/validator@latest/validator.min.js"></script>
 <div>
     <ul>
         <li id="pswdLenError">Min Password Size is 8</li>
@@ -20,6 +21,7 @@
     <form name = "femPassword" method = "get">
         <label> Enter password<input type="text"></label>
         <label>Confirm Password <input type="text"></label>
+        <label><input type="checkbox" name ="privacyConfirm"> privacy</label>
         <input type="submit" >
     </form>
 </div>
@@ -30,7 +32,7 @@
     const pswdLowercaseError = document.getElementById("pswdLenError")
     const pswdConfirmError = document.getElementById("pswdLenError")
 
-    const frm = document.forms['femPassword']
+    const frm = document.forms['privacyConfirm']
     console.log(frm)
 
     let hasErrors = true
@@ -38,7 +40,10 @@
         const pswd = frm.elements['pswd'].value
         const pswdConfirm = frm.elements['pswdConfirm'].value
         hasErrors = false
-        if(pwsd.length < 8||pswdConfirm.length < 8){
+        if(frm.elements['femPassword']){}
+
+        if(!validator.isLength(pswd, { min: 8 })){
+            hasErrors = true
             pswdLenError.classList.add('pswdError')
             pswdLenError.classList.remove('pswdOk')
 
@@ -46,14 +51,25 @@
             pswdLenError.classList.remove('pswdError')
             pswdLenError.classList.add('pswdOk')
         }
+        if (hasErrors) {
+            frm.elements['sendForm'].disabled = true
+        }
         console.log(pswd)
 
 
     }
+
+    frm.elements['pswd'].addEventListener('keypress',validateForms())
+    frm.elements['pswdConfirm'].addEventListener('keypress',validateForms())
+    frm.elements['privacyConfirm'].addEventListener('change',validateForms())
+
      frm.onsubmit = function (event) {
         event.preventDefault()
          validateForms()
-         return false
+         if (hasErrors) {
+             return false
+         }
+         frm.submit()
      }
 
 
