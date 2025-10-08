@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li {
+            width: 100%;
+            border-radius: 50%;
+            border: 5px solid white;
+            height: auto;
+
+        }
+        img{
+            width: 100%;
+            border-radius: 50%;
+            border: 5px solid white;
+            height: auto;
+
+        }
+        </style>
+</head>
+<body>
+<button onclick="getCats()"> Load More</button>
+<ul id="catsList"></ul>
+<script>
+    let limit = 10
+    function getCats() {
+        fetch('https://api.thecatapi.com/v1/images/search?limit=' + limit)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(cat => {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<img src="${cat.url}" alt="cat">`;
+                    document.getElementById('catsList').appendChild(li);
+                })
+            })
+            .catch(error => console.log(error));
+
+    }
+</script>
+
+
+</body>
+</html>

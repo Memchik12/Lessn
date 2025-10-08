@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="dashboard">
+    <button onclick="getCat()">Click Me</button>
+</div>
+<main id="content">
+    <img src="" id = "catImg">
+    </main>
+
+<script>
+    const catImg = document.getElementById('catImg');
+    function getCat()
+    {
+        fetch('https://api.thecatapi.com/v1/images/search')
+            .then(res => {
+                console.log(res);
+                if (res.ok) {
+                    return res.json();
+                }
+                else {
+                    throw new Error("Error");
+                }
+            })
+            .then(catArr => {
+                console.log(catArr);
+                catImg.scr = catArr[0].url;
+                catImg.scr = catArr[0].height;
+                catImg.scr = catArr[0].width;
+                catImg.alt = catArr[0].alt;
+                catImg.img = catArr[0].id;
+            })
+            .catch(err => {
+                console.log(err);
+
+            });
+
+    }
+</script>
+
+
+</body>
+</html>
